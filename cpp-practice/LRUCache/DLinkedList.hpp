@@ -23,7 +23,21 @@ public:
     void moveNodeToHead(Node *);
     void removeRearNode();
     Node *getRearNode();
-    ~DLinkedList(){}
+    ~DLinkedList(){
+        if (isEmpty())
+            return;
+        
+        if ( front == rear){
+            delete front;
+            return;
+        }
+        
+        while ( front != rear){
+            Node *tmp = rear;
+            rear = rear->prev;
+            delete tmp;
+        }
+    }
 };
 
 #endif /* DLinkedList_hpp */
